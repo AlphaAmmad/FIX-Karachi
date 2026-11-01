@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "FIX KARACHI API",
+    "_postman_id": "2a8c4a8d-0f8c-4f8b-9a42-4ed0b6a0c001",
+    "description": "Collection for FIX KARACHI backend APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Citizen Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/auth/citizen/register", "host": ["{{baseUrl}}"], "path": ["api", "auth", "citizen", "register"] },
+            "body": { "mode": "raw", "raw": "{\n  \"fullName\": \"Ali Khan\",\n  \"email\": \"ali@example.com\",\n  \"phone\": \"03001234567\",\n  \"password\": \"Password123!\"\n}" }
+          }
+        },
+        {
+          "name": "Citizen Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/auth/citizen/login", "host": ["{{baseUrl}}"], "path": ["api", "auth", "citizen", "login"] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"ali@example.com\",\n  \"password\": \"Password123!\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "Create Complaint",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{citizenToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/complaints", "host": ["{{baseUrl}}"], "path": ["api", "complaints"] }
+          }
+        },
+        {
+          "name": "My Complaints",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{citizenToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/complaints/mine", "host": ["{{baseUrl}}"], "path": ["api", "complaints", "mine"] }
+          }
+        },
+        {
+          "name": "Public Dashboard",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/api/public/dashboard", "host": ["{{baseUrl}}"], "path": ["api", "public", "dashboard"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authority",
+      "item": [
+        {
+          "name": "Assigned Complaints",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{authorityToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/authority/complaints", "host": ["{{baseUrl}}"], "path": ["api", "authority", "complaints"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Analytics",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{adminToken}}" }],
+            "url": { "raw": "{{baseUrl}}/api/admin/analytics", "host": ["{{baseUrl}}"], "path": ["api", "admin", "analytics"] }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "citizenToken", "value": "" },
+    { "key": "authorityToken", "value": "" },
+    { "key": "adminToken", "value": "" }
+  ]
+}
